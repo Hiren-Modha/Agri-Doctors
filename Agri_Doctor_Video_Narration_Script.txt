@@ -1,0 +1,146 @@
+AGRI DOCTOR — VIDEO NARRATION SCRIPT
+180-Second Project Presentation
+Female Narrator Voice
+======================================================================
+
+SLIDE 1 — TITLE  [0:00–0:12]
+----------------------------------------------------------------------
+"Meet Agri Doctor — an Agentic AI crop disease advisor built with
+Python, Streamlit, and IBM watsonx.ai. Developed for the
+Inter-Institute IBM Bob Hackathon with IBM SkillsBuild, this
+application gives every farmer on-demand access to AI-powered
+crop disease diagnosis and practical treatment guidance."
+
+SLIDE 2 — THE PROBLEM  [0:12–0:28]
+----------------------------------------------------------------------
+"Farmers often notice worrying symptoms on their crops — yellow
+leaves, black spots, or sudden wilting — but they struggle to tell
+the difference between a fungal infection, a nutrient deficiency, or
+a pest attack. Misdiagnosis leads to spraying the wrong chemicals,
+wasting money, and harming soil health. Access to a certified plant
+pathologist is often too slow for smallholder farmers."
+
+SLIDE 3 — OUR SOLUTION  [0:28–0:48]
+----------------------------------------------------------------------
+"Agri Doctor solves this with a two-agent AI pipeline. The first
+agent, the Pathologist Agent, analyses the uploaded crop photograph
+using an IBM watsonx.ai vision model. It identifies the disease,
+lists the observed symptoms, states a confidence level, and flags
+unclear images rather than guessing. The second agent, the Extension
+Officer Agent, receives that diagnosis and uses IBM Granite to
+generate a simple, farmer-friendly advisory in plain language —
+complete with immediate actions, preventive measures, and safe
+treatment options."
+
+SLIDE 4 — ARCHITECTURE  [0:48–1:03]
+----------------------------------------------------------------------
+"The workflow is strictly sequential. The Pathologist Agent always
+runs first. Its sanitised diagnostic report is then passed to the
+Extension Officer Agent. Nine categories of AI safety guardrails
+protect every step of this pipeline — from input validation through
+to ethical compliance and audit trails."
+
+SLIDE 5 — TECHNOLOGY STACK  [1:03–1:15]
+----------------------------------------------------------------------
+"The application is built entirely in Python and Streamlit, with no
+HTML or JavaScript. All LLM calls go through the IBM watsonx.ai
+Python SDK. The vision model is Mistral Small 3-1, and the text
+advisory model is IBM Granite 4 H Small. Both model IDs are
+configurable via environment variables — nothing is hardcoded."
+
+SLIDE 6 — GUARDRAILS  [1:15–1:35]
+----------------------------------------------------------------------
+"Agri Doctor implements nine categories of AI safety guardrails, all
+as pure Python rule-based checks. Input guardrails validate the
+image file and block prompt injection in filenames. Output guardrails
+hard-block any invented pesticide dosages — a critical safety
+requirement. Security guardrails detect jailbreak attempts and verify
+cross-agent message integrity using SHA-256 digests. Human-in-the-
+Loop guardrails trigger mandatory escalation when disease confidence
+is low or when severe crop damage is detected. And an ethical audit
+trail logs every guardrail decision with timestamps."
+
+SLIDE 7 — PERFORMANCE DASHBOARD  [1:35–1:50]
+----------------------------------------------------------------------
+"The application includes a six-tab LLM and agent performance
+dashboard that evaluates every diagnosis run in real time. It covers
+accuracy and quality metrics including ROUGE and BLEU scores, RAG
+evaluation metrics like faithfulness and groundedness, agentic AI
+metrics measuring handoff accuracy and task completion, safety and
+guardrail metrics, and performance and cost metrics tracking latency,
+tokens, and estimated cost per request."
+
+SLIDE 8 — USER INTERFACE  [1:50–2:02]
+----------------------------------------------------------------------
+"The user interface is clean and beginner-friendly. Farmers upload a
+JPG or PNG photo of their affected crop. The AI disclaimer is always
+visible. After clicking Diagnose Crop, two progress spinners show
+each agent running in sequence. Results are displayed in labelled
+expanders, and the full advisory can be downloaded as a text file."
+
+SLIDE 9 — FILE STRUCTURE  [2:02–2:08]
+----------------------------------------------------------------------
+"The project is organised into three clean packages: agents for the
+two AI modules, guardrails for all nine safety modules, and utils
+for the shared IBM client, performance tracker, dashboard, and
+report formatter — all wired together in app.py."
+
+SLIDE 10 — SAFETY  [2:08–2:18]
+----------------------------------------------------------------------
+"Safety is non-negotiable. The AI disclaimer is permanently visible.
+Dosages are blocked at both the prompt and guardrail level. When the
+AI is uncertain, it escalates to a human expert rather than
+guessing. API keys never appear in source code, logs, or git commits."
+
+SLIDE 11 — KEY OUTCOMES  [2:18–2:28]
+----------------------------------------------------------------------
+"Agri Doctor delivers all required hackathon outcomes: a working
+two-agent workflow on IBM watsonx.ai, a full nine-category guardrails
+framework, a live performance evaluation dashboard, a Streamlit-only
+UI, a secure GitHub repository, and a downloadable advisory report
+with a complete guardrail audit trail."
+
+SLIDE 12 — THANK YOU  [2:28–3:00]
+----------------------------------------------------------------------
+"Thank you for watching. Agri Doctor is live on GitHub at
+github.com slash Hiren-Modha slash Agri-Doctors. To run it locally,
+clone the repository, copy dot-env-example to dot-env, fill in your
+IBM watsonx.ai credentials, and run: streamlit run app.py.
+Agri Doctor — powered by IBM watsonx.ai."
+
+======================================================================
+END OF NARRATION — Total duration: 180 seconds
+======================================================================
+
+VIDEO PRODUCTION NOTES
+----------------------------------------------------------------------
+• Voice: Female narrator, warm and professional tone
+• Pacing: 15 seconds per slide average; slower on technical slides
+• Background music: Soft ambient/nature-inspired instrumental, -20dB
+• Transitions: Fade between slides, 0.5-second duration
+• Text animations: Fade-in on title/body, 0.3-second delay
+• Export: 1920x1080 (Full HD), MP4 format
+• Narration tool: Microsoft Azure Text-to-Speech (en-US-JennyNeural)
+  or ElevenLabs (Rachel voice) or PowerPoint built-in narration
+• Slide timing: Set per the timestamps above in Slide Show > Rehearse
+
+HOW TO RECORD IN POWERPOINT
+----------------------------------------------------------------------
+1. Open Agri_Doctor_Presentation.pptx in PowerPoint
+2. Slide Show → Record Slide Show → Start Recording from Beginning
+3. Read each slide narration as written above
+4. File → Export → Create a Video → Full HD 1080p
+5. Use recorded timings and narrations → Create Video
+6. Save as: Agri_Doctor_Video.mp4
+
+HOW TO ADD AZURE AI FEMALE VOICE (automated)
+----------------------------------------------------------------------
+1. Go to https://azure.microsoft.com/en-us/services/cognitive-services/text-to-speech/
+2. Select voice: en-US-JennyNeural (Female, conversational)
+3. Paste each slide's narration text
+4. Export as MP3 per slide
+5. Import MP3 audio into each PowerPoint slide:
+   Insert → Audio → Audio on My PC
+6. Set each audio to play automatically
+7. Export as video as above
+======================================================================
