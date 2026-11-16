@@ -40,9 +40,9 @@ def get_credentials() -> dict:
 
     if missing:
         raise ValueError(
-            f"Missing or placeholder IBM watsonx.ai credentials in your .env file: "
-            f"{', '.join(missing)}. "
-            f"Please copy .env.example to .env and fill in your real values."
+            f"Missing or placeholder IBM watsonx.ai credentials: {', '.join(missing)}. "
+            f"On Streamlit Cloud, add them under Settings → Secrets. "
+            f"Locally, copy .env.example to .env and fill in your real values."
         )
 
     return {"api_key": api_key, "project_id": project_id, "url": url}

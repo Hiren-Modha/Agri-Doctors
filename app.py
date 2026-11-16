@@ -43,7 +43,7 @@ st.set_page_config(
     page_title="Agri Doctor",
     page_icon="🌿",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 # ── Session-state initialisation ──────────────────────────────────────────────
@@ -62,62 +62,11 @@ budget: TokenBudget     = st.session_state.token_budget
 audit: AuditTrail       = st.session_state.audit_trail
 session: SessionMetrics = st.session_state.session_metrics
 
-# ── Sidebar ───────────────────────────────────────────────────────────────────
-with st.sidebar:
-    st.title("🌿 Agri Doctor")
-    st.markdown("**AI Crop Disease Advisor**")
-    st.markdown("---")
-
-    st.markdown("### About")
-    st.markdown(
-        "Agri Doctor uses two AI agents to help farmers identify crop diseases "
-        "and get practical, safe treatment advice.\n\n"
-        "**Agent 1 — Pathologist:** Analyses your crop image and identifies possible diseases.\n\n"
-        "**Agent 2 — Extension Officer:** Prepares a farmer-friendly advisory with "
-        "immediate actions, prevention tips, and safe treatment options."
-    )
-    st.markdown("---")
-
-    st.markdown("### Active Models")
-    try:
-        model_names = get_active_model_names()
-        st.markdown(f"**Vision (Agent 1):**  \n`{model_names['vision_model']}`")
-        st.markdown(f"**Text (Agent 2):**  \n`{model_names['text_model']}`")
-    except Exception:
-        model_names = {}
-        st.markdown("_Model names unavailable — check .env_")
-
-    st.markdown("---")
-
-    # Session guardrail summary in sidebar
-    summary = budget.summary()
-    st.markdown("### 🛡️ Session Status")
-    st.metric("API Calls",        summary["api_calls"])
-    st.metric("Tokens Used",      summary["total_tokens"])
-    st.metric("Est. Cost (USD)",  f"${summary['estimated_cost_usd']:.4f}")
-    audit_summary = audit.get_summary()
-    st.metric("Guardrail Checks", audit_summary["total"])
-    if audit_summary["block"] > 0:
-        st.error(f"🚫 {audit_summary['block']} guardrail block(s) this session")
-    if audit_summary["warn"] > 0:
-        st.warning(f"⚠️ {audit_summary['warn']} guardrail warning(s) this session")
-
-    # Performance quick stats
-    if session.run_count > 0:
-        st.markdown("---")
-        st.markdown("### 📊 Performance")
-        st.metric("Runs Completed",       session.run_count)
-        st.metric("Task Completion Rate", f"{session.task_completion_rate * 100:.0f}%")
-        st.metric("Avg E2E Latency",      f"{session.avg_e2e_latency}s")
-
-    st.markdown("---")
-    st.markdown(
-        "⚙️ **Setup:** Copy `.env.example` to `.env` and add your "
-        "IBM watsonx.ai credentials."
-    )
-    st.markdown(
-        "📖 **Powered by** [IBM watsonx.ai](https://www.ibm.com/products/watsonx-ai)"
-    )
+# ── Resolve model names once (used in credential check below) ─────────────────
+try:
+    model_names = get_active_model_names()
+except Exception:
+    model_names = {}
 
 # ── Main tabs ─────────────────────────────────────────────────────────────────
 main_tab, dashboard_tab = st.tabs(["🌿 Diagnosis", "📊 Performance Dashboard"])
